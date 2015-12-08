@@ -2,6 +2,8 @@
 
 A simple and clean API wrapper for the [Stockfighter](https://www.stockfighter.io/) game.
 
+> **Note:** This library is still a work in progress, not all methods have been implemented. This note will be removed in a couple days when everything has been finished!
+
 ### Installation
 
 `npm i stockfighter -S`
