@@ -1,5 +1,5 @@
 {
-  "name": "stockfighter-node",
+  "name": "stockfighter",
   "version": "0.0.0",
   "description": "node client for the stockfighter game",
   "main": "lib",
