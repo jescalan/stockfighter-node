@@ -13,6 +13,35 @@ describe('API', () => {
   })
 
   it('GET /heartbeat', () => {
-    return api.heartbeat().should.eventually.deep.equal({ ok: true, error: '' })
+    return api.heartbeat()
+      .should.eventually.deep.equal({ ok: true, error: '' })
+  })
+
+  it('GET /venues/:venue/heartbeat', () => {
+    return api.venue_heartbeat({ venue: 'TESTEX' })
+      .should.eventually.deep.equal({ ok: true, venue: 'TESTEX' })
+  })
+
+  it('GET /venues/:venue/stocks', () => {
+    return api.venue_stocks({ venue: 'TESTEX' })
+      .should.eventually.deep.equal({
+        ok: true,
+        symbols: [
+          { name: 'Foreign Owned Occluded Bridge Architecture Resources',
+            symbol: 'FOOBAR' }
+        ]
+      })
+  })
+
+  it('GET /venues/:venue/stocks/:stock', () => {
+    return api.orderbook({ venue: 'TESTEX', stock: 'FOOBAR' })
+      .then(res => {
+        res.ok.should.be.true
+        res.venue.should.eql('TESTEX')
+        res.symbol.should.eql('FOOBAR')
+        res.should.have.property('ts')
+        res.should.have.property('bids')
+        res.should.have.property('asks')
+      })
   })
 })

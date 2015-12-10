@@ -32,6 +32,9 @@ client.heartbeat()
 ### Methods
 
 - **Heartbeat**, `client.heartbeat()`, [docs](https://starfighter.readme.io/docs/heartbeat)
+- **Venue**, `client.venue()`, [docs](https://starfighter.readme.io/docs/venue-healthcheck)
+- **Venue Stocks**, `client.venue_stocks()`, [docs](https://starfighter.readme.io/docs/list-stocks-on-venue)
+- **Stock Orderbook**, `client.orderbook()`, [docs](https://starfighter.readme.io/docs/get-orderbook-for-stock)
 
 ### License and Contributing
 
