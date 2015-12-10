@@ -44,4 +44,52 @@ describe('API', () => {
         res.should.have.property('asks')
       })
   })
+
+  it('POST /venues/:venue/stocks/:stock/order [buy]', () => {
+    return api.buy({
+      account: 'EXB123456',
+      venue: 'TESTEX',
+      stock: 'FOOBAR',
+      price: 5142,
+      quantity: 10,
+      type: 'limit'
+    }).then(res => {
+      res.ok.should.be.true
+      res.venue.should.eql('TESTEX')
+      res.symbol.should.eql('FOOBAR')
+      res.direction.should.eql('buy')
+      res.originalQty.should.eql(10)
+      res.price.should.eql(5142)
+      res.orderType.should.eql('limit')
+      res.account.should.eql('EXB123456')
+      res.should.have.property('id')
+      res.should.have.property('ts')
+      res.should.have.property('fills')
+      res.should.have.property('open')
+    })
+  })
+
+  it('POST /venues/:venue/stocks/:stock/order [sell]', () => {
+    return api.sell({
+      account: 'EXB123456',
+      venue: 'TESTEX',
+      stock: 'FOOBAR',
+      price: 2375,
+      quantity: 3,
+      type: 'limit'
+    }).then(res => {
+      res.ok.should.be.true
+      res.venue.should.eql('TESTEX')
+      res.symbol.should.eql('FOOBAR')
+      res.direction.should.eql('sell')
+      res.originalQty.should.eql(3)
+      res.price.should.eql(2375)
+      res.orderType.should.eql('limit')
+      res.account.should.eql('EXB123456')
+      res.should.have.property('id')
+      res.should.have.property('ts')
+      res.should.have.property('fills')
+      res.should.have.property('open')
+    })
+  })
 })

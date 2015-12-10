@@ -1,4 +1,4 @@
 --reporter spec
 --compilers js:babel-core/register
 --require test/support/helpers
---timeout 5000
+--timeout 10000
