@@ -1,6 +1,7 @@
 # Stockfighter Node
 
 [![npm](http://img.shields.io/npm/v/stockfighter.svg?style=flat)](https://badge.fury.io/js/stockfighter) [![tests](http://img.shields.io/travis/jenius/stockfighter-node/master.svg?style=flat)](https://travis-ci.org/jenius/stockfighter-node) [![dependencies](http://img.shields.io/gemnasium/jenius/stockfighter-node.svg?style=flat)](https://gemnasium.com/jenius/stockfighter-node)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
 A simple and clean API wrapper for the [Stockfighter](https://www.stockfighter.io/) game.
 
