@@ -1,4 +1,4 @@
-import API from '../lib'
+import API from '..'
 import config from './config'
 
 describe('API', () => {
