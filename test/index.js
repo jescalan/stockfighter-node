@@ -1,8 +1,9 @@
+/* global describe, it */
+
 import API from '..'
 import config from './config'
 
 describe('API', () => {
-
   let api = new API({ apiKey: config.apiKey })
 
   it('initializes correctly', () => {
@@ -14,5 +15,4 @@ describe('API', () => {
   it('GET /heartbeat', () => {
     return api.heartbeat().should.eventually.deep.equal({ ok: true, error: '' })
   })
-
 })
