@@ -33,30 +33,30 @@ client.heartbeat()
 
 Any method that takes parameters only accepts an object with the options set as key/value pairs. All methods that take options objects are documented fully along with the option names, types, and descriptions below.
 
-#### `client.heartbeat()` [[docs](https://starfighter.readme.io/docs/heartbeat)]
-Checks if the API is online.
+#### client.heartbeat()
+Checks if the API is online. ([official docs](https://starfighter.readme.io/docs/heartbeat))
 
-#### `client.venue(options)` [[docs](https://starfighter.readme.io/docs/venue-healthcheck)]
-Checks if a stock exchange is online.
-
-##### Options
-- **venue** (String): symbol for stock exchange
-
-#### `client.venue_stocks(options)` [[docs](https://starfighter.readme.io/docs/list-stocks-on-venue)]
-Returns a list of stocks offered by a stock exchange.
+#### client.venue(options)
+Checks if a stock exchange is online. ([official docs](https://starfighter.readme.io/docs/venue-healthcheck))
 
 ##### Options
 - **venue** (String): symbol for stock exchange
 
-#### `client.orderbook(options)` [[docs](https://starfighter.readme.io/docs/get-orderbook-for-stock)]
-Gets the order book for a specific stock.
+#### client.venue_stocks(options)
+Returns a list of stocks offered by a stock exchange. ([official docs](https://starfighter.readme.io/docs/list-stocks-on-venue))
+
+##### Options
+- **venue** (String): symbol for stock exchange
+
+#### client.orderbook(options)
+Gets the order book for a specific stock. ([official docs](https://starfighter.readme.io/docs/get-orderbook-for-stock))
 
 ##### Options
 - **venue** (String): symbol for stock exchange
 - **stock** (String): symbol for the stock
 
-#### `client.buy(options)` [[docs](https://starfighter.readme.io/docs/place-new-order)]
-Purchases a specific stock.
+#### client.buy(options)
+Purchases a specific stock. ([official docs](https://starfighter.readme.io/docs/place-new-order))
 
 ##### Options
 - **account** (String): bank account used to purchase
@@ -66,8 +66,8 @@ Purchases a specific stock.
 - **quantity** (Integer or String) number of shares to buy
 - **type** (String) type of order, can be 'limit', 'market', 'fill-or-kill', or 'immediate-or-cancel'. See [the docs](https://starfighter.readme.io/docs/place-new-order#order-types) for descriptions of each type.
 
-#### `client.sell(options)` [[docs](https://starfighter.readme.io/docs/place-new-order)]
-Sell a specific stock.
+#### client.sell(options)
+Sell a specific stock. ([official docs](https://starfighter.readme.io/docs/place-new-order))
 
 ##### Options
 - **account** (String): bank account used to purchase
@@ -76,6 +76,13 @@ Sell a specific stock.
 - **price** (Integer or String) desired price as decimal, ex. 50.42 == $50.42
 - **quantity** (Integer or String) number of shares to buy
 - **type** (String) type of order, can be 'limit', 'market', 'fill-or-kill', or 'immediate-or-cancel'. See [the docs](https://starfighter.readme.io/docs/place-new-order#order-types) for descriptions of each type.
+
+#### client.quote(opts)
+Get the most recent trading information for a stock. ([official docs](https://starfighter.readme.io/docs/a-quote-for-a-stock))
+
+##### Options
+- **venue** (String): symbol for stock exchange
+- **stock** (String): symbol for the stock
 
 ### License and Contributing
 

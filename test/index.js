@@ -92,4 +92,19 @@ describe('API', () => {
       res.should.have.property('open')
     })
   })
+
+  it('GET /venues/:venue/stocks/:stock/quote', () => {
+    return api.quote({ venue: 'TESTEX', stock: 'FOOBAR' })
+      .then(res => {
+        res.ok.should.be.true
+        res.venue.should.eql('TESTEX')
+        res.symbol.should.eql('FOOBAR')
+        res.should.have.property('bid')
+        res.should.have.property('bidSize')
+        res.should.have.property('askSize')
+        res.should.have.property('last')
+        res.should.have.property('lastTrade')
+        res.should.have.property('quoteTime')
+      })
+  })
 })
