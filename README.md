@@ -109,6 +109,6 @@ See all orders in a given account's history ([official docs](https://starfighter
 
 ### License and Contributing
 
-Any contributions are welcome, just make a pull request! If you want to check and make sure I'm ok with it, just open an issue and ask. Also make sure you add tests, it's very simple to do so and important to keep things in line. In order to get the tests running, you must make a copy of `config.sample.js` and rename it as `config.js`, then add your own API key.
+Any contributions are welcome, just make a pull request! If you want to check and make sure I'm ok with it, just open an issue and ask. Also make sure you add tests, it's very simple to do so and important to keep things in line. In order to get the tests running, you must make a copy of `config.sample.js` and rename it as `config.js`, then add your own API key. Tests are not yet running on travis because I need to do some crazy encryption stuff. I'll do this eventually, in the meantime we will have to be satisfied with locally running tests.
 
 This project is licensed under MIT, and the full license can be found [here](LICENSE.md).
