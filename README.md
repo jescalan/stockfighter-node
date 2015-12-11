@@ -1,11 +1,10 @@
 # Stockfighter Node
 
-[![npm](http://img.shields.io/npm/v/stockfighter.svg?style=flat)](https://badge.fury.io/js/stockfighter) [![tests](http://img.shields.io/travis/jenius/stockfighter-node/master.svg?style=flat)](https://travis-ci.org/jenius/stockfighter-node) [![dependencies](http://img.shields.io/gemnasium/jenius/stockfighter-node.svg?style=flat)](https://gemnasium.com/jenius/stockfighter-node)
+[![npm](http://img.shields.io/npm/v/stockfighter.svg?style=flat)](https://badge.fury.io/js/stockfighter) [![tests](http://img.shields.io/travis/jenius/stockfighter-node/master.svg?style=flat)](https://travis-ci.org/jenius/stockfighter-node)
+[![dependencies](https://gemnasium.com/jenius/stockfighter-node.svg?style=flat)](https://gemnasium.com/jenius/stockfighter-node)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
 A simple and clean API wrapper for the [Stockfighter](https://www.stockfighter.io/) game.
-
-> **Note:** This library is still a work in progress, not all methods have been implemented. This note will be removed in a couple days when everything has been finished!
 
 ### Installation
 
@@ -16,9 +15,9 @@ A simple and clean API wrapper for the [Stockfighter](https://www.stockfighter.i
 This library exports a class which you must initialize with an API key in order to use, as such:
 
 ```js
-import 'StockfighterAPI' from 'stockfighter'
+import 'API' from 'stockfighter'
 
-let client = new StockfighterAPI({ apiKey: 'xxx' });
+let client = new API({ apiKey: 'xxx' });
 ```
 
 Once you have initialized the client, you can call any of the following methods to get back the API response. All responses are returned as promises, because I like promises and the are a much better way to handle asynchronous control flow than callbacks. If you don't use promises, this is ok, they are very easy to handle and can be treated pretty much the same as callbacks if you decide not to use their extra power. A simple example is given below:
