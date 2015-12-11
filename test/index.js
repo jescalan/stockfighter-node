@@ -107,4 +107,40 @@ describe('API', () => {
         res.should.have.property('quoteTime')
       })
   })
+
+  it('GET /venues/:venue/stocks/:stock/orders/:id', () => {
+    return api.buy({ venue: 'TESTEX', stock: 'FOOBAR', account: 'EXB123456', quantity: 1, type: 'market' })
+      .then(res => {
+        return api.order_status({ venue: 'TESTEX', stock: 'FOOBAR', id: res.id })
+      }).then(res => {
+        res.ok.should.be.true
+        res.venue.should.eql('TESTEX')
+        res.symbol.should.eql('FOOBAR')
+        res.should.have.property('fills')
+        res.should.have.property('open')
+      })
+  })
+
+  it('DELETE /venues/:venue/stocks/:stock/orders/:id', () => {
+    return api.buy({ venue: 'TESTEX', stock: 'FOOBAR', account: 'EXB123456', quantity: 1, type: 'market' })
+      .then(res => {
+        return api.cancel_order({ venue: 'TESTEX', stock: 'FOOBAR', id: res.id })
+      }).then(res => {
+        res.ok.should.be.true
+        res.venue.should.eql('TESTEX')
+        res.symbol.should.eql('FOOBAR')
+        res.should.have.property('fills')
+        res.open.should.be.false
+      })
+  })
+
+  it('GET /venues/:venue/accounts/:account/orders', () => {
+    return api.all_orders({ venue: 'TESTEX', account: 'BOGI123' })
+      .then(res => { console.log(res) })
+  })
+
+  it('GET /venues/:venue/accounts/:account/stock/:stock/orders', () => {
+    return api.all_orders({ venue: 'TESTEX', account: 'BOGI123', stock: 'FOOBAR' })
+      .then(res => { console.log(res) })
+  })
 })

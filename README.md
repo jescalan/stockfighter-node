@@ -84,6 +84,30 @@ Get the most recent trading information for a stock. ([official docs](https://st
 - **venue** (String): symbol for stock exchange
 - **stock** (String): symbol for the stock
 
+#### client.order_status(opts)
+Get the updated status of an existing order. ([official docs](https://starfighter.readme.io/docs/status-for-an-existing-order))
+
+##### Options
+- **venue** (String): symbol for stock exchange
+- **stock** (String): symbol for the stock
+- **id** (Integer): id of the order
+
+#### client.cancel_order(opts)
+Cancel an existing order. ([official docs](https://starfighter.readme.io/docs/cancel-an-order))
+
+##### Options
+- **venue** (String): symbol for stock exchange
+- **stock** (String): symbol for the stock
+- **id** (Integer): id of the order
+
+#### client.all_orders(opts)
+See all orders in a given account's history ([official docs](https://starfighter.readme.io/docs/status-for-all-orders) and [this too](https://starfighter.readme.io/docs/status-for-all-orders-in-a-stock))
+
+##### Options
+- **venue** (String): symbol for stock exchange
+- **account** (String): account to view orders for
+- **stock** (String): optional - show only orders for this specific stock
+
 ### License and Contributing
 
 Any contributions are welcome, just make a pull request! If you want to check and make sure I'm ok with it, just open an issue and ask. Also make sure you add tests, it's very simple to do so and important to keep things in line. In order to get the tests running, you must make a copy of `config.sample.js` and rename it as `config.js`, then add your own API key.
