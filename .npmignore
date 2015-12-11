@@ -1,3 +1,6 @@
 src
 test
 Makefile
+wallaby.js
+.travis.yml
+.editorconfig
