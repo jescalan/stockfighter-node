@@ -47,7 +47,7 @@ Returns a list of all venues offered by the stock exchange. (unofficial)
 ##### Options
 - None
 
-#### client.venue_stocks(options)
+#### client.venueStocks(options)
 Returns a list of stocks offered by a stock exchange. ([official docs](https://starfighter.readme.io/docs/list-stocks-on-venue))
 
 ##### Options
@@ -89,7 +89,7 @@ Get the most recent trading information for a stock. ([official docs](https://st
 - **venue** (String): symbol for stock exchange
 - **stock** (String): symbol for the stock
 
-#### client.order_status(opts)
+#### client.orderStatus(opts)
 Get the updated status of an existing order. ([official docs](https://starfighter.readme.io/docs/status-for-an-existing-order))
 
 ##### Options
@@ -97,7 +97,7 @@ Get the updated status of an existing order. ([official docs](https://starfighte
 - **stock** (String): symbol for the stock
 - **id** (Integer): id of the order
 
-#### client.cancel_order(opts)
+#### client.cancelOrder(opts)
 Cancel an existing order. ([official docs](https://starfighter.readme.io/docs/cancel-an-order))
 
 ##### Options
@@ -105,13 +105,69 @@ Cancel an existing order. ([official docs](https://starfighter.readme.io/docs/ca
 - **stock** (String): symbol for the stock
 - **id** (Integer): id of the order
 
-#### client.all_orders(opts)
+#### client.allOrders(opts)
 See all orders in a given account's history ([official docs](https://starfighter.readme.io/docs/status-for-all-orders) and [this too](https://starfighter.readme.io/docs/status-for-all-orders-in-a-stock))
 
 ##### Options
 - **venue** (String): symbol for stock exchange
 - **account** (String): account to view orders for
 - **stock** (String): optional - show only orders for this specific stock
+
+### Game Master API
+
+#### client.startLevel(level)
+Start a level instance on stockfighter ([unofficial](https://discuss.starfighters.io/t/the-gm-api-how-to-start-stop-restart-resume-trading-levels-automagically/143))
+
+##### Options
+- **level** (String): the name of the level to start
+
+#### client.restartLevel(instanceId)
+Restart a level instance on stockfighter ([unofficial](https://discuss.starfighters.io/t/the-gm-api-how-to-start-stop-restart-resume-trading-levels-automagically/143))
+
+##### Options
+- **instanceId** (Number): the instance ID of the level to restart
+
+#### client.stopLevel(instanceId)
+Stop a level instance on stockfighter ([unofficial](https://discuss.starfighters.io/t/the-gm-api-how-to-start-stop-restart-resume-trading-levels-automagically/143))
+
+##### Options
+- **instanceId** (Number): the instance ID of the level to stop
+
+#### client.resumeLevel(instanceId)
+Resume a level instance on stockfighter ([unofficial](https://discuss.starfighters.io/t/the-gm-api-how-to-start-stop-restart-resume-trading-levels-automagically/143))
+
+##### Options
+- **instanceId** (Number): the instance ID of the level to resume
+
+#### client.levelStatus(instanceId)
+Check the status of a given level instance ([unofficial](https://discuss.starfighters.io/t/the-gm-api-how-to-start-stop-restart-resume-trading-levels-automagically/143))
+
+##### Options
+- **instanceId** (Number): the instance ID of the level
+
+### Websockets
+
+#### client.openWebsocket(options)
+Open a websocket for tickertape or executions. Returns the websocket object if you would like to handle it yourself instead of using the options callbacks. (unofficial)
+
+##### Options
+- **type** (String): either `tickertape` or `executions`. Defaults to `tickertape`.
+- **venue** (String): the venue to filter on. Defaults to none.
+- **stock** (String): the stock to filter on. Defaults to none.
+- **onOpen** (Function): optional callback for the `open` websocket channel
+- **onMessage** (Function): optional callback for the `message` websocket channel
+- **onClose** (Function): optional callback for the `close` websocket channel
+- **onError** (Function): optional callback for the `error` websocket channel
+- **reconnect** (Boolean): will attempt to reconnect the websocket when closed. Defaults to `false`.
+
+#### client.tickertape(options)
+Sugar to open a tickertape websocket
+
+#### client.executions(options)
+Sugar to open a tickertape websocket
+
+#### client.setAccount(id)
+Set your account number before opening a websocket. Your account number is set automatically when starting, resuming, or restarting a level.
 
 ### License and Contributing
 

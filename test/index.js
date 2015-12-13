@@ -4,7 +4,7 @@ import API from '..'
 import config from './config'
 
 describe('API', () => {
-  let api = new API({ apiKey: config.apiKey })
+  let api = new API({ apiKey: config.apiKey})
 
   it('initializes correctly', () => {
     api.should.be.an('object')
@@ -18,12 +18,12 @@ describe('API', () => {
   })
 
   it('GET /venues/:venue/heartbeat', () => {
-    return api.venue_heartbeat({ venue: 'TESTEX' })
+    return api.venueHeartbeat({ venue: 'TESTEX' })
       .should.eventually.deep.equal({ ok: true, venue: 'TESTEX' })
   })
 
   it('GET /venues/:venue/stocks', () => {
-    return api.venue_stocks({ venue: 'TESTEX' })
+    return api.venueStocks({ venue: 'TESTEX' })
       .should.eventually.deep.equal({
         ok: true,
         symbols: [
@@ -111,7 +111,7 @@ describe('API', () => {
   it('GET /venues/:venue/stocks/:stock/orders/:id', () => {
     return api.buy({ venue: 'TESTEX', stock: 'FOOBAR', account: 'EXB123456', quantity: 1, type: 'market' })
       .then(res => {
-        return api.order_status({ venue: 'TESTEX', stock: 'FOOBAR', id: res.id })
+        return api.orderStatus({ venue: 'TESTEX', stock: 'FOOBAR', id: res.id })
       }).then(res => {
         res.ok.should.be.true
         res.venue.should.eql('TESTEX')
@@ -124,7 +124,7 @@ describe('API', () => {
   it('DELETE /venues/:venue/stocks/:stock/orders/:id', () => {
     return api.buy({ venue: 'TESTEX', stock: 'FOOBAR', account: 'EXB123456', quantity: 1, type: 'market' })
       .then(res => {
-        return api.cancel_order({ venue: 'TESTEX', stock: 'FOOBAR', id: res.id })
+        return api.cancelOrder({ venue: 'TESTEX', stock: 'FOOBAR', id: res.id })
       }).then(res => {
         res.ok.should.be.true
         res.venue.should.eql('TESTEX')
@@ -135,12 +135,12 @@ describe('API', () => {
   })
 
   it('GET /venues/:venue/accounts/:account/orders', () => {
-    return api.all_orders({ venue: 'TESTEX', account: 'BOGI123' })
+    return api.allOrders({ venue: 'TESTEX', account: 'BOGI123' })
       .then(res => { console.log(res) })
   })
 
   it('GET /venues/:venue/accounts/:account/stock/:stock/orders', () => {
-    return api.all_orders({ venue: 'TESTEX', account: 'BOGI123', stock: 'FOOBAR' })
+    return api.allOrders({ venue: 'TESTEX', account: 'BOGI123', stock: 'FOOBAR' })
       .then(res => { console.log(res) })
   })
 
@@ -150,5 +150,136 @@ describe('API', () => {
         res.id.should.be.true
         res.should.have.property('venues')
       })
+  })
+
+  it('start, check status, restart, resume, and stop a level', () => {
+    return api.startLevel('first_steps')
+      .then(res => {
+        res.ok.should.be.true
+        res.should.have.property('instanceId')
+        console.log('Level instance created: ', res.instanceId)
+        return api.levelStatus(res.instanceId)
+      }, err => {
+        console.error('Error trying to start level: ', err)
+      }).then(res => {
+        res.ok.should.be.true
+        res.should.have.property('id')
+        res.should.have.property('state')
+        console.log('Level instance status checked.', res.id)
+        return api.restartLevel(res.id)
+      }, err => {
+        console.error('Error trying to retrieve level status: ', err)
+      }).then(res => {
+        res.ok.should.be.true
+        res.should.have.property('instanceId')
+        console.log('Instance ID restarted: ', res.instanceId)
+        return api.resumeLevel(res.instanceId)
+      }).then(res => {
+        res.ok.should.be.true
+        res.should.have.property('instanceId')
+        console.log('Instance ID created: ', res.instanceId)
+        return api.stopLevel(res.instanceId)
+      }, err => {
+        console.error('Error trying to resume level: ', err)
+      }).then(res => {
+        res.ok.should.be.true
+        console.error('Level instance stopped.')
+      }, err => {
+        console.error('Error trying to restart level: ', err)
+      })
+  })
+
+  it('sets an account ID', () => {
+    api.setAccount('TAH97715708')
+    api.account.should.eql('TAH97715708')
+  })
+
+  it('opens a default tickertape websocket', () => {
+    var promise = new Promise(function(resolve) {
+      api.websocket({
+        onMessage: function(data) {
+          promise.resolve(data)
+        }
+      })
+    })
+    promise.then(res => {
+      res.ok.should.be.true
+    })
+  })
+
+  it('opens a tickertape websocket with a venue', () => {
+    var promise = new Promise(function(resolve) {
+      api.websocket({
+        onMessage: function(data) {
+          promise.resolve(data)
+        },
+        type: 'tickertape',
+        venue: 'TESTEX'
+      })
+    })
+    promise.then(res => {
+      res.ok.should.be.true
+    })
+  })
+
+  it('opens a tickertape websocket with a venue and stock', () => {
+    var promise = new Promise(function(resolve) {
+      api.websocket({
+        onMessage: function(data) {
+          promise.resolve(data)
+        },
+        type: 'tickertape',
+        venue: 'TESTEX',
+        stock: 'FOOBAR'
+      })
+    })
+    promise.then(res => {
+      res.ok.should.be.true
+    })
+  })
+
+  it('opens an executions websocket', () => {
+    var promise = new Promise(function(resolve) {
+      api.websocket({
+        onMessage: function(data) {
+          promise.resolve(data)
+        },
+        type: 'executions'
+      })
+    })
+    promise.then(res => {
+      res.ok.should.be.true
+    })
+  })
+
+  it('opens an executions websocket with a venue', () => {
+    var promise = new Promise(function(resolve) {
+      api.websocket({
+        onMessage: function(data) {
+          promise.resolve(data)
+        },
+        type: 'executions',
+        venue: 'TESTEX'
+      })
+    })
+    promise.then(res => {
+      res.ok.should.be.true
+    })
+  })
+
+  it('opens an executions websocket with a venue and a stock', () => {
+    var promise = new Promise(function(resolve) {
+      api.websocket({
+        onMessage: function(data) {
+          promise.resolve(data)
+        },
+        type: 'executions',
+        venue: 'TESTEX',
+        stock: 'FOOBAR'
+      })
+    })
+    promise.then(res => {
+      res.ok.should.be.true
+    })
   })
 })
