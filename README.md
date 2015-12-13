@@ -41,6 +41,12 @@ Checks if a stock exchange is online. ([official docs](https://starfighter.readm
 ##### Options
 - **venue** (String): symbol for stock exchange
 
+#### client.venues()
+Returns a list of all venues offered by the stock exchange. (unofficial)
+
+##### Options
+- None
+
 #### client.venue_stocks(options)
 Returns a list of stocks offered by a stock exchange. ([official docs](https://starfighter.readme.io/docs/list-stocks-on-venue))
 
