@@ -143,4 +143,12 @@ describe('API', () => {
     return api.all_orders({ venue: 'TESTEX', account: 'BOGI123', stock: 'FOOBAR' })
       .then(res => { console.log(res) })
   })
+
+  it('GET /venues', () => {
+    return api.venues()
+      .then(res => {
+        res.id.should.be.true
+        res.should.have.property('venues')
+      })
+  })
 })
